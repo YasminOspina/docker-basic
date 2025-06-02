@@ -32,6 +32,12 @@ pipeline {
                 }
             }
         }
+        stage('Backend - Install SonarScanner') {
+            steps {
+                echo 'Installing dotnet-sonarscanner global tool...'
+                sh 'dotnet tool install --global dotnet-sonarscanner --no-interactive || dotnet tool update --global dotnet-sonarscanner --no-interactive'
+            }
+        }
         stage('Backend - Static Analysis'){
             steps {
                 dir('10-net9-remix-pg-env/Backend') {
