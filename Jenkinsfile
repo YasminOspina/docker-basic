@@ -34,8 +34,8 @@ pipeline {
         }
         stage('Backend - Install SonarScanner') {
             steps {
-                echo 'Installing dotnet-sonarscanner global tool...'
-                sh 'dotnet tool install --global dotnet-sonarscanner --no-interactive || dotnet tool update --global dotnet-sonarscanner --no-interactive'
+                echo 'Installing or updating dotnet-sonarscanner global tool...'
+                sh 'dotnet tool install --global dotnet-sonarscanner || dotnet tool update --global dotnet-sonarscanner'
             }
         }
         stage('Backend - Static Analysis'){
