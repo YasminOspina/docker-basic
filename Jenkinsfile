@@ -50,5 +50,29 @@ pipeline {
                 }
             }
         }
+        stage('Backend - Code Coverage'){
+            steps {
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Running code coverage...'
+                    sh 'dotnet test --collect:"XPlat Code Coverage" --no-build --verbosity normal'
+                }
+            }
+        }
+        stage('Backend - Build'){
+            steps {
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Building the project...'
+                    sh 'dotnet build --configuration Release --no-restore'
+                }
+            }
+        }
+        stage('Backend - Publish'){
+            steps {
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Publishing the project...'
+                    sh 'dotnet publish --configuration Release --no-build -o ./publish'
+                }
+            }
+        }
     }
 }
