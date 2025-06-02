@@ -24,5 +24,13 @@ pipeline {
                 }
             }
         }
+        stage('Backend - Restore'){
+            steps {
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Restoring dependencies...'
+                    sh 'dotnet restore'
+                }
+            }
+        }
     }
 }
