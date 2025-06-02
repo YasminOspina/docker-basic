@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9.0.203'}/bin"
-        PATH = "${env.PATH}:${tool 'Node-20.19.2'}/bin"
+        PATH = "${env.PATH}:${tool 'Node-20.19.2'}/bin:${env.HOME}/.dotnet/tools"
     }
 
     stages {
@@ -30,12 +30,6 @@ pipeline {
                     echo 'Restoring dependencies...'
                     sh 'dotnet restore'
                 }
-            }
-        }
-        stage('Backend - Install SonarScanner') {
-            steps {
-                echo 'Installing or updating dotnet-sonarscanner global tool...'
-                sh 'dotnet tool install --global dotnet-sonarscanner || dotnet tool update --global dotnet-sonarscanner'
             }
         }
         stage('Backend - Static Analysis'){
