@@ -2,13 +2,13 @@ pipeline {
     agent any
     
     tools {
-        dotnetsdk 'dotnet-9'
-        nodejs 'node-22'
+        dotnetsdk 'dotnet-9.0.203'
+        nodejs 'Node-20.19.2'
     }
 
     environment {
-        DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9'}/bin"
-        PATH = "${env.PATH}:${tool 'node-22'}/bin"
+        DOTNET_ROOT = "${env.PATH}:${tool 'dotnet-9.0.203'}/bin"
+        PATH = "${env.PATH}:${tool 'Node-20.19.2'}/bin"
     }
 
     stages {
