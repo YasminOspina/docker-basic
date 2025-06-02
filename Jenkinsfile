@@ -32,5 +32,15 @@ pipeline {
                 }
             }
         }
+        stage('Backend - Static Analysis'){
+            steps {
+                dir('10-net9-remix-pg-env/Backend') {
+                    echo 'Running static analysis...'
+                    sh 'dotnet sonarscanner begin /k:"Docker-Basic" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="squ_2def316aaefee3fbfa5a2b5d1866322eaf68f2ec"'
+                    sh 'dotnet build'
+                    sh 'dotnet sonarscanner end /d:sonar.login="squ_2def316aaefee3fbfa5a2b5d1866322eaf68f2ec"'
+                }
+            }
+        }
     }
 }
